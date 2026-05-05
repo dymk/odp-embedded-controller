@@ -1,0 +1,9 @@
+[workspace]
+resolver = "2"
+members = ["crates/mctp-rs"]
+
+[workspace.package]
+edition = "2024"
+version = "0.1.0"
+license = "MIT"
+repository = "https://github.com/OpenDevicePartnership/odp-embedded-controller"
