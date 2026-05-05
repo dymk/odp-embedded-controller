@@ -1,0 +1,82 @@
+# mctp-rs CI — reproduces the upstream `dymk/mctp-rs` cargo-husky pre-commit
+# hook (SHA 1b8b7f5, .cargo-husky/hooks/pre-commit) as workspace-scoped CI:
+#
+#   cargo +nightly fmt --all -- --check
+#   cargo hack --workspace --feature-powerset test
+#   cargo hack --workspace --feature-powerset clippy --all-targets -- -D warnings
+#
+# Three independent jobs (fmt / clippy / test) so each pass is its own
+# GitHub status check and can fail fast independently.
+#
+# cargo-hack is installed via `taiki-e/install-action@cargo-hack` which
+# ships pre-built binaries with built-in caching (no manual actions/cache
+# step required — cargo-hack runs are dominated by compile time, not setup).
+#
+# `--feature-powerset` (no `--features` filter) auto-enumerates from
+# `crates/mctp-rs/Cargo.toml`'s `[features]` table. With features
+# {espi, defmt, serial}, this is 2^3 = 8 combinations per check.
+
+name: mctp-rs
+
+permissions:
+  contents: read
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    paths:
+      - crates/mctp-rs/**
+      - Cargo.lock
+      - Cargo.toml
+      - .github/workflows/mctp-rs.yml
+  workflow_dispatch:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
+  cancel-in-progress: true
+
+jobs:
+  fmt:
+    runs-on: ubuntu-latest
+    name: nightly / fmt
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+      - name: Install nightly (for rustfmt unstable_features)
+        uses: dtolnay/rust-toolchain@nightly
+        with:
+          components: rustfmt
+      - name: cargo +nightly fmt --all -- --check
+        run: cargo +nightly fmt --all -- --check
+
+  clippy:
+    runs-on: ubuntu-latest
+    name: stable / clippy (feature-powerset)
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+      - name: Install stable
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          components: clippy
+      - name: Install cargo-hack
+        uses: taiki-e/install-action@cargo-hack
+      - name: cargo hack clippy --workspace --feature-powerset
+        run: cargo hack --workspace --feature-powerset clippy --all-targets -- -D warnings
+
+  test:
+    runs-on: ubuntu-latest
+    name: stable / test (feature-powerset)
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+      - name: Install stable
+        uses: dtolnay/rust-toolchain@stable
+      - name: Install cargo-hack
+        uses: taiki-e/install-action@cargo-hack
+      - name: cargo hack test --workspace --feature-powerset
+        run: cargo hack --workspace --feature-powerset test
