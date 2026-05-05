@@ -24,6 +24,8 @@ defmt = { version = "0.3", optional = true }
 pretty_assertions = "1.4.1"
 tokio = { version = "1.0", features = ["macros", "rt"] }
 rstest = "0.26.1"
-cargo-husky = { version = "1", default-features = false, features = [
-    "user-hooks",
-] }
+# cargo-husky removed during in-tree port: its build script looks for
+# .cargo-husky/hooks/ at the cargo workspace root, but in this repo the
+# workspace root is one directory above crates/mctp-rs/. The destination
+# repo manages its own git hooks (or none) — cargo-husky was developer
+# tooling specific to the standalone dymk/mctp-rs fork.
