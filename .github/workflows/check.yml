@@ -262,3 +262,25 @@ jobs:
       - name: cargo +${{ matrix.msrv }} check
         working-directory: platform/${{ matrix.platform }}
         run: cargo check --locked
+
+  mctp-rs:
+    # Phase 32 / CI-01: workspace-level fmt + clippy for crates/mctp-rs.
+    # fmt requires nightly because crates/mctp-rs/rustfmt.toml uses unstable_features.
+    runs-on: ubuntu-latest
+    name: mctp-rs
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+      - name: Install nightly (for rustfmt unstable_features)
+        uses: dtolnay/rust-toolchain@nightly
+        with:
+          components: rustfmt
+      - name: cargo fmt --all --check
+        run: cargo +nightly fmt --all --check
+      - name: Install stable (for clippy)
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          components: clippy
+      - name: cargo clippy --workspace --all-targets -- -D warnings
+        run: cargo clippy --workspace --all-targets -- -D warnings

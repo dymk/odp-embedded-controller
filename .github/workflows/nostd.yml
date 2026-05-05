@@ -45,3 +45,16 @@ jobs:
       - name: cargo check
         working-directory: platform/${{ matrix.platform }}
         run: cargo check --locked --all-features
+
+  mctp-rs-nostd:
+    # Phase 32 / CI-02: verify crates/mctp-rs builds without std (no_std-compat path).
+    runs-on: ubuntu-latest
+    name: mctp-rs
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: true
+      - name: Install stable
+        uses: dtolnay/rust-toolchain@stable
+      - name: cargo build -p mctp-rs --no-default-features
+        run: cargo build -p mctp-rs --no-default-features
