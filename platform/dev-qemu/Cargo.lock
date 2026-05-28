@@ -29,7 +29,7 @@ dependencies = [
 [[package]]
 name = "battery-service"
 version = "0.1.0"
-source = "git+https://github.com/OpenDevicePartnership/embedded-services?branch=main#62d4ea9a87588c6096e1c2f149ac3263064cbde9"
+source = "git+https://github.com/dymk/embedded-services?rev=b00c3a7#b00c3a7a3f1710fe725a0bbe29c1b6bb936817f1"
 dependencies = [
  "battery-service-interface",
  "defmt 0.3.100",
@@ -45,7 +45,7 @@ dependencies = [
 [[package]]
 name = "battery-service-interface"
 version = "0.1.0"
-source = "git+https://github.com/OpenDevicePartnership/embedded-services?branch=main#62d4ea9a87588c6096e1c2f149ac3263064cbde9"
+source = "git+https://github.com/dymk/embedded-services?rev=b00c3a7#b00c3a7a3f1710fe725a0bbe29c1b6bb936817f1"
 dependencies = [
  "defmt 0.3.100",
  "embedded-batteries-async",
@@ -54,12 +54,13 @@ dependencies = [
 [[package]]
 name = "battery-service-relay"
 version = "0.1.0"
-source = "git+https://github.com/OpenDevicePartnership/embedded-services?branch=main#62d4ea9a87588c6096e1c2f149ac3263064cbde9"
+source = "git+https://github.com/dymk/embedded-services?rev=b00c3a7#b00c3a7a3f1710fe725a0bbe29c1b6bb936817f1"
 dependencies = [
  "battery-service-interface",
  "defmt 0.3.100",
  "embedded-services",
  "num_enum",
+ "odp-client",
 ]
 
 [[package]]
@@ -611,16 +612,13 @@ dependencies = [
 [[package]]
 name = "embedded-services"
 version = "0.1.0"
-source = "git+https://github.com/OpenDevicePartnership/embedded-services?branch=main#62d4ea9a87588c6096e1c2f149ac3263064cbde9"
+source = "git+https://github.com/dymk/embedded-services?rev=b00c3a7#b00c3a7a3f1710fe725a0bbe29c1b6bb936817f1"
 dependencies = [
- "bitfield 0.17.0",
  "cortex-m",
  "critical-section",
  "defmt 0.3.100",
  "embassy-futures",
  "embassy-sync 0.8.0",
- "mctp-rs",
- "paste",
  "portable-atomic",
  "serde",
 ]
@@ -628,7 +626,7 @@ dependencies = [
 [[package]]
 name = "espi-device"
 version = "0.1.0"
-source = "git+https://github.com/OpenDevicePartnership/haf-ec-service#290aa80a4c281857f3bed94581200b330119286c"
+source = "git+https://github.com/OpenDevicePartnership/haf-ec-service#fe63c1fc0bb2463922d956003caf8ac9d6224231"
 dependencies = [
  "bit-register 0.1.0 (git+https://github.com/OpenDevicePartnership/odp-utilities?tag=v0.1.0)",
  "bitflags 2.11.1",
@@ -738,9 +736,9 @@ checksum = "11d3d7f243d5c5a8b9bb5d6dd2b1602c0cb0b9db1621bafc7ed66e35ff9fe092"
 
 [[package]]
 name = "log"
-version = "0.4.29"
+version = "0.4.30"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "5e5032e24019045c762d3c0f28f5b6b8bbf38563a65908389bf7978758920897"
+checksum = "616ec5685824bcc94416c6d4a7a446eea774a31efd7062c8480ba6fd06d7a6e5"
 
 [[package]]
 name = "loom"
@@ -767,7 +765,7 @@ dependencies = [
 [[package]]
 name = "mctp-rs"
 version = "0.1.0"
-source = "git+https://github.com/OpenDevicePartnership/embedded-services?branch=main#62d4ea9a87588c6096e1c2f149ac3263064cbde9"
+source = "git+https://github.com/dymk/embedded-services?rev=b00c3a7#b00c3a7a3f1710fe725a0bbe29c1b6bb936817f1"
 dependencies = [
  "bit-register 0.1.0 (git+https://github.com/OpenDevicePartnership/odp-utilities)",
  "crc",
@@ -781,9 +779,9 @@ dependencies = [
 
 [[package]]
 name = "memchr"
-version = "2.8.0"
+version = "2.8.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "f8ca58f447f06ed17d5fc4043ce1b10dd205e060fb3ce5b979b8ed8e59ff3f79"
+checksum = "6b947ae49db0d222b1dbc6b113ce7248a3fc3a6ca21b696717bfc000ba4484d8"
 
 [[package]]
 name = "nb"
@@ -840,9 +838,22 @@ dependencies = [
 ]
 
 [[package]]
+name = "odp-client"
+version = "0.1.0"
+source = "git+https://github.com/dymk/embedded-services?rev=b00c3a7#b00c3a7a3f1710fe725a0bbe29c1b6bb936817f1"
+dependencies = [
+ "bitfield 0.17.0",
+ "defmt 0.3.100",
+ "embedded-io 0.7.1",
+ "heapless 0.9.3",
+ "mctp-rs",
+ "paste",
+]
+
+[[package]]
 name = "odp-service-common"
 version = "0.1.0"
-source = "git+https://github.com/OpenDevicePartnership/embedded-services?branch=main#62d4ea9a87588c6096e1c2f149ac3263064cbde9"
+source = "git+https://github.com/dymk/embedded-services?rev=b00c3a7#b00c3a7a3f1710fe725a0bbe29c1b6bb936817f1"
 dependencies = [
  "embedded-services",
  "static_cell",
@@ -859,6 +870,12 @@ name = "paste"
 version = "1.0.15"
 source = "registry+https://github.com/rust-lang/crates.io-index"
 checksum = "57c0d7b74b563b49d38dae00a0c37d4d6de9b432382b2892f0574ddcae73fd0a"
+
+[[package]]
+name = "pastey"
+version = "0.2.3"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "2ee67f1008b1ba2321834326597b8e186293b049a023cdef258527550b9935b4"
 
 [[package]]
 name = "pin-project-lite"
@@ -888,6 +905,7 @@ dependencies = [
  "embedded-mcu-hal",
  "embedded-sensors-hal-async",
  "embedded-services",
+ "odp-client",
  "odp-service-common",
  "static_cell",
  "thermal-service",
@@ -907,7 +925,7 @@ checksum = "c33a9471896f1c69cecef8d20cbe2f7accd12527ce60845ff44c153bb2a21b49"
 [[package]]
 name = "power-policy-interface"
 version = "0.1.0"
-source = "git+https://github.com/OpenDevicePartnership/embedded-services?branch=main#62d4ea9a87588c6096e1c2f149ac3263064cbde9"
+source = "git+https://github.com/dymk/embedded-services?rev=b00c3a7#b00c3a7a3f1710fe725a0bbe29c1b6bb936817f1"
 dependencies = [
  "bitfield 0.17.0",
  "defmt 0.3.100",
@@ -988,22 +1006,22 @@ checksum = "dc897dd8d9e8bd1ed8cdad82b5966c3e0ecae09fb1907d58efaa013543185d0a"
 
 [[package]]
 name = "riscv"
-version = "0.16.0"
+version = "0.16.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "9251433e48c39d2133cbaff3ae7809ce6a1ecbc8225ca7da33d96d10cf360582"
+checksum = "e42cdafa0aa3f0f956b7993cace26de5dafff7bb4f2c5b1dcb2c3723f4267a4f"
 dependencies = [
  "critical-section",
  "embedded-hal 1.0.0",
- "paste",
+ "pastey",
  "riscv-macros",
  "riscv-types",
 ]
 
 [[package]]
 name = "riscv-macros"
-version = "0.4.0"
+version = "0.4.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "d47d1fb716349455b8e5e3ebbf1eff95344dbdf9f782a4e1359d2f16f51e3dce"
+checksum = "6ad9f6dda08d90d091bc0743967cab369b8fe39ea74b26783ba2ca5c0ce39e86"
 dependencies = [
  "proc-macro2",
  "quote",
@@ -1012,12 +1030,12 @@ dependencies = [
 
 [[package]]
 name = "riscv-peripheral"
-version = "0.5.0"
+version = "0.5.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "e22a4ff621f3c512ec90bbbc5c668ba40a8d4636f879cec8752f65066fe65b94"
+checksum = "abaeb1973471ded96f54cdbc580e17a9b2f73aee7c6708daca2414b20b98c9ac"
 dependencies = [
  "embedded-hal 1.0.0",
- "paste",
+ "pastey",
  "riscv",
 ]
 
@@ -1211,7 +1229,7 @@ dependencies = [
 [[package]]
 name = "thermal-service"
 version = "0.1.0"
-source = "git+https://github.com/OpenDevicePartnership/embedded-services?branch=main#62d4ea9a87588c6096e1c2f149ac3263064cbde9"
+source = "git+https://github.com/dymk/embedded-services?rev=b00c3a7#b00c3a7a3f1710fe725a0bbe29c1b6bb936817f1"
 dependencies = [
  "defmt 0.3.100",
  "embassy-futures",
@@ -1228,7 +1246,7 @@ dependencies = [
 [[package]]
 name = "thermal-service-interface"
 version = "0.1.0"
-source = "git+https://github.com/OpenDevicePartnership/embedded-services?branch=main#62d4ea9a87588c6096e1c2f149ac3263064cbde9"
+source = "git+https://github.com/dymk/embedded-services?rev=b00c3a7#b00c3a7a3f1710fe725a0bbe29c1b6bb936817f1"
 dependencies = [
  "defmt 0.3.100",
  "embassy-time",
@@ -1239,11 +1257,11 @@ dependencies = [
 [[package]]
 name = "thermal-service-relay"
 version = "0.1.0"
-source = "git+https://github.com/OpenDevicePartnership/embedded-services?branch=main#62d4ea9a87588c6096e1c2f149ac3263064cbde9"
+source = "git+https://github.com/dymk/embedded-services?rev=b00c3a7#b00c3a7a3f1710fe725a0bbe29c1b6bb936817f1"
 dependencies = [
  "defmt 0.3.100",
- "embedded-services",
  "num_enum",
+ "odp-client",
  "thermal-service-interface",
  "uuid",
 ]
@@ -1280,7 +1298,7 @@ dependencies = [
 [[package]]
 name = "time-alarm-service"
 version = "0.1.0"
-source = "git+https://github.com/OpenDevicePartnership/embedded-services?branch=main#62d4ea9a87588c6096e1c2f149ac3263064cbde9"
+source = "git+https://github.com/dymk/embedded-services?rev=b00c3a7#b00c3a7a3f1710fe725a0bbe29c1b6bb936817f1"
 dependencies = [
  "defmt 0.3.100",
  "embassy-futures",
@@ -1296,7 +1314,7 @@ dependencies = [
 [[package]]
 name = "time-alarm-service-interface"
 version = "0.1.0"
-source = "git+https://github.com/OpenDevicePartnership/embedded-services?branch=main#62d4ea9a87588c6096e1c2f149ac3263064cbde9"
+source = "git+https://github.com/dymk/embedded-services?rev=b00c3a7#b00c3a7a3f1710fe725a0bbe29c1b6bb936817f1"
 dependencies = [
  "bitfield 0.17.0",
  "defmt 0.3.100",
@@ -1308,12 +1326,12 @@ dependencies = [
 [[package]]
 name = "time-alarm-service-relay"
 version = "0.1.0"
-source = "git+https://github.com/OpenDevicePartnership/embedded-services?branch=main#62d4ea9a87588c6096e1c2f149ac3263064cbde9"
+source = "git+https://github.com/dymk/embedded-services?rev=b00c3a7#b00c3a7a3f1710fe725a0bbe29c1b6bb936817f1"
 dependencies = [
  "defmt 0.3.100",
  "embedded-mcu-hal",
- "embedded-services",
  "num_enum",
+ "odp-client",
  "time-alarm-service-interface",
 ]
 
@@ -1381,13 +1399,14 @@ dependencies = [
 [[package]]
 name = "uart-service"
 version = "0.1.0"
-source = "git+https://github.com/OpenDevicePartnership/embedded-services?branch=main#62d4ea9a87588c6096e1c2f149ac3263064cbde9"
+source = "git+https://github.com/dymk/embedded-services?rev=b00c3a7#b00c3a7a3f1710fe725a0bbe29c1b6bb936817f1"
 dependencies = [
  "defmt 0.3.100",
  "embassy-sync 0.8.0",
  "embedded-io-async 0.7.0",
  "embedded-services",
  "mctp-rs",
+ "odp-client",
 ]
 
 [[package]]
@@ -1455,18 +1474,18 @@ dependencies = [
 
 [[package]]
 name = "zerocopy"
-version = "0.8.48"
+version = "0.8.49"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "eed437bf9d6692032087e337407a86f04cd8d6a16a37199ed57949d415bd68e9"
+checksum = "bce33a6288fa3f072a8c2c7d0f2fdbb90e28298f0135c1f99b96c3db2efcc60b"
 dependencies = [
  "zerocopy-derive",
 ]
 
 [[package]]
 name = "zerocopy-derive"
-version = "0.8.48"
+version = "0.8.49"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "70e3cd084b1788766f53af483dd21f93881ff30d7320490ec3ef7526d203bad4"
+checksum = "8fd425244944f4ab65ccff928e7323354c5a018c75838362fdce749dfad2ee1e"
 dependencies = [
  "proc-macro2",
  "quote",

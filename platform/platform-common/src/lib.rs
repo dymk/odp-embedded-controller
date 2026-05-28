@@ -19,7 +19,7 @@ pub mod mock;
 #[macro_export]
 macro_rules! impl_relay_handler {
     ($handler_name:ident, $battery_service_ty:ty, $thermal_service_ty:ty) => {
-        embedded_services::relay::mctp::impl_odp_mctp_relay_handler!(
+        odp_client::impl_odp_relay_handler!(
             $handler_name;
             Battery, 0x08,
                 battery_service_relay::BatteryServiceRelayHandler<$battery_service_ty>;

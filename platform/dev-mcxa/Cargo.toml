@@ -76,3 +76,24 @@ embassy-sync = { git = "https://github.com/embassy-rs/embassy", rev = "bef411873
 embassy-executor = { git = "https://github.com/embassy-rs/embassy", rev = "bef4118731ac69092bee4489240f59c89af0d944" }
 embassy-futures = { git = "https://github.com/embassy-rs/embassy", rev = "bef4118731ac69092bee4489240f59c89af0d944" }
 embassy-embedded-hal = { git = "https://github.com/embassy-rs/embassy", rev = "bef4118731ac69092bee4489240f59c89af0d944" }
+
+# === Phase 2b prereq: dymk/embedded-services PR #11 (canonical ODP wire
+# format + odp-client crate) is not yet merged to upstream. Re-route every
+# embedded-services-sourced dep — direct and transitive — through the dymk
+# fork at rev b00c3a7 (head of dymk/odp-canonical-wire-and-odp-client).
+# REVERT THIS BLOCK once PR #11 merges to OpenDevicePartnership/embedded-services.
+[patch."https://github.com/OpenDevicePartnership/embedded-services"]
+embedded-services = { git = "https://github.com/dymk/embedded-services", rev = "b00c3a7" }
+mctp-rs = { git = "https://github.com/dymk/embedded-services", rev = "b00c3a7" }
+odp-client = { git = "https://github.com/dymk/embedded-services", rev = "b00c3a7" }
+battery-service = { git = "https://github.com/dymk/embedded-services", rev = "b00c3a7" }
+battery-service-interface = { git = "https://github.com/dymk/embedded-services", rev = "b00c3a7" }
+battery-service-relay = { git = "https://github.com/dymk/embedded-services", rev = "b00c3a7" }
+thermal-service = { git = "https://github.com/dymk/embedded-services", rev = "b00c3a7" }
+thermal-service-interface = { git = "https://github.com/dymk/embedded-services", rev = "b00c3a7" }
+thermal-service-relay = { git = "https://github.com/dymk/embedded-services", rev = "b00c3a7" }
+time-alarm-service = { git = "https://github.com/dymk/embedded-services", rev = "b00c3a7" }
+time-alarm-service-interface = { git = "https://github.com/dymk/embedded-services", rev = "b00c3a7" }
+time-alarm-service-relay = { git = "https://github.com/dymk/embedded-services", rev = "b00c3a7" }
+odp-service-common = { git = "https://github.com/dymk/embedded-services", rev = "b00c3a7" }
+uart-service = { git = "https://github.com/dymk/embedded-services", rev = "b00c3a7" }
