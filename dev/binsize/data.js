@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1779994869136,
+  "lastUpdate": 1779994931104,
   "repoUrl": "https://github.com/dymk/odp-embedded-controller",
   "entries": {
     "dev-npcx": [
@@ -572,6 +572,36 @@ window.BENCHMARK_DATA = {
             "value": 67.87,
             "unit": "KiB",
             "extra": "RAM Size: 9.53 KiB\nDependency Count: 328\nVersion: rustc 1.95.0 (59807616e 2026-04-14)"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "blakejackson312006@gmail.com",
+            "name": "Blake Jackson",
+            "username": "bjackson312006"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "95d998c2b5f563f5b1899870ac93517c83ff1a9a",
+          "message": "Dev Platform for MEC1723 (#25)\n\n* basic setup\n\n* board.rs updated\n\n* compiled successfully\n\n* fixed comments in memory.x\n\n* updated config.toml\n\n* j-link issue\n\n* rtt works\n\n* no more uart error\n\n* buffered uart\n\n* rebase\n\n* update embassy-microchip fork and turn off [TRACE] logs\n\n* removed custom yaml, adjusted memory.x and link_ram.x to be consistent with the embassy example\n\n* renamed to dev-mec, changed Cargo.toml dependency branches\n\n* update deleted files on gh?\n\n* updated embedded-services to main",
+          "timestamp": "2026-05-27T10:09:56-07:00",
+          "tree_id": "d184055b8f2b4821faedef36f3e6c2385e9bf5e8",
+          "url": "https://github.com/dymk/odp-embedded-controller/commit/95d998c2b5f563f5b1899870ac93517c83ff1a9a"
+        },
+        "date": 1779994930534,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Binary Size",
+            "value": 67.87,
+            "unit": "KiB",
+            "extra": "RAM Size: 9.53 KiB\nDependency Count: 329\nVersion: rustc 1.96.0 (ac68faa20 2026-05-25)"
           }
         ]
       }
