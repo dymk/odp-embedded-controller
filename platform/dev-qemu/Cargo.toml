@@ -10,6 +10,14 @@ bench = false
 name = "dev-qemu"
 test = false
 
+[features]
+default = []
+# sp-serial off (default): SmbusEspiMedium (the framing ec-test-cli
+# speaks). On: MctpSerialMedium / DSP0253 (the framing the SP speaks
+# over the two-QEMU link). Pure compile-time selector — both medium
+# constructors already exist in uart-service.
+sp-serial = []
+
 [profile.release]
 lto = true          # better optimizations
 codegen-units = 1
@@ -62,3 +70,27 @@ static_cell = "2.1.0"
 defmt = "0.3.6"
 defmt-semihosting = "0.3.0"
 semihosting = { version = "0.1", features = ["panic-handler"] }
+
+# TEMPORARY (F1.1 placeholder): redirect embedded-services crates to a
+# dymk fork commit = the EC's current pin (62d4ea9) + ONLY the
+# uart_service::default_mctp_serial constructor (F1.0). This keeps the
+# rest of embedded-services at 62d4ea9, so dev-qemu builds with zero
+# platform-common churn. Remove this whole block once F1.0 merges
+# upstream AND the EC is modernized to embedded-services main (tracked
+# as a separate epic); the branch=main deps will then resolve the
+# constructor directly via a Cargo.lock bump.
+[patch."https://github.com/OpenDevicePartnership/embedded-services"]
+battery-service = { git = "https://github.com/dymk/embedded-services", rev = "ac26892ab25a1af9872d0d28208f8e290bffdfc7" }
+battery-service-interface = { git = "https://github.com/dymk/embedded-services", rev = "ac26892ab25a1af9872d0d28208f8e290bffdfc7" }
+battery-service-relay = { git = "https://github.com/dymk/embedded-services", rev = "ac26892ab25a1af9872d0d28208f8e290bffdfc7" }
+embedded-services = { git = "https://github.com/dymk/embedded-services", rev = "ac26892ab25a1af9872d0d28208f8e290bffdfc7" }
+mctp-rs = { git = "https://github.com/dymk/embedded-services", rev = "ac26892ab25a1af9872d0d28208f8e290bffdfc7" }
+odp-service-common = { git = "https://github.com/dymk/embedded-services", rev = "ac26892ab25a1af9872d0d28208f8e290bffdfc7" }
+power-policy-interface = { git = "https://github.com/dymk/embedded-services", rev = "ac26892ab25a1af9872d0d28208f8e290bffdfc7" }
+thermal-service = { git = "https://github.com/dymk/embedded-services", rev = "ac26892ab25a1af9872d0d28208f8e290bffdfc7" }
+thermal-service-interface = { git = "https://github.com/dymk/embedded-services", rev = "ac26892ab25a1af9872d0d28208f8e290bffdfc7" }
+thermal-service-relay = { git = "https://github.com/dymk/embedded-services", rev = "ac26892ab25a1af9872d0d28208f8e290bffdfc7" }
+time-alarm-service = { git = "https://github.com/dymk/embedded-services", rev = "ac26892ab25a1af9872d0d28208f8e290bffdfc7" }
+time-alarm-service-interface = { git = "https://github.com/dymk/embedded-services", rev = "ac26892ab25a1af9872d0d28208f8e290bffdfc7" }
+time-alarm-service-relay = { git = "https://github.com/dymk/embedded-services", rev = "ac26892ab25a1af9872d0d28208f8e290bffdfc7" }
+uart-service = { git = "https://github.com/dymk/embedded-services", rev = "ac26892ab25a1af9872d0d28208f8e290bffdfc7" }
