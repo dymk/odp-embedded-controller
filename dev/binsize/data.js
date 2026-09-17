@@ -1,5 +1,5 @@
 window.BENCHMARK_DATA = {
-  "lastUpdate": 1789668051762,
+  "lastUpdate": 1789668089135,
   "repoUrl": "https://github.com/dymk/odp-embedded-controller",
   "entries": {
     "dev-npcx": [
@@ -450,6 +450,36 @@ window.BENCHMARK_DATA = {
             "value": 55.13,
             "unit": "KiB",
             "extra": "RAM Size: 4.68 KiB\nDependency Count: 319\nVersion: rustc 1.97.1 (8bab26f4f 2026-07-14)"
+          }
+        ]
+      },
+      {
+        "commit": {
+          "author": {
+            "email": "philweber@microsoft.com",
+            "name": "philgweber",
+            "username": "philgweber"
+          },
+          "committer": {
+            "email": "noreply@github.com",
+            "name": "GitHub",
+            "username": "web-flow"
+          },
+          "distinct": true,
+          "id": "f4758e3d30a774b94df3b7b0028f83841fc9c217",
+          "message": "Clean up HUTRR document headers (#45)\n\n* Restructured the EC spec to include HID\n\n* Address EC specification review feedback\n\nRepair the restructured mdBook navigation and local image links. Clean up the HID descriptor sources so they remain valid Waratah/TOML and correct the reviewed report types and documentation text.\n\nAssisted-by: GitHub Copilot:gpt-5.6-sol\n\nCo-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>\n\n* Fix flow diagrams and missing media\n\n* Add mermaid support\n\n* Updated to match latest docx documentation\n\n* Cleaned up headers on the HUTRR docs\n\n---------\n\nCo-authored-by: Copilot <223556219+Copilot@users.noreply.github.com>\nCo-authored-by: pgweber <pgweber.mail@gmail.com>",
+          "timestamp": "2026-09-15T20:48:30-07:00",
+          "tree_id": "2d76fd3696bcee2fd50954d84f24816b278609f5",
+          "url": "https://github.com/dymk/odp-embedded-controller/commit/f4758e3d30a774b94df3b7b0028f83841fc9c217"
+        },
+        "date": 1789668088113,
+        "tool": "customSmallerIsBetter",
+        "benches": [
+          {
+            "name": "Binary Size",
+            "value": 54.71,
+            "unit": "KiB",
+            "extra": "RAM Size: 5.10 KiB\nDependency Count: 319\nVersion: rustc 1.98.1 (48a229cea 2026-09-01)"
           }
         ]
       }
